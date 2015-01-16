@@ -19,10 +19,13 @@ public class PlayerMovement : MonoBehaviour {
 		float hSpeed = Input.GetAxis ("Horizontal");
 		m_Animator.SetFloat ("Speed", Mathf.Abs (hSpeed));
 		bool isGrounded = Physics2D.OverlapPoint (m_GroundCheck.position, GroundLayers);
-		
+		float m_VelY = this.rigidbody2D.velocity.y;
+		bool falling = m_VelY != 0 ? false : true;
+		 
+			
 		if (Input.GetButton ("Jump")) 
 		{
-			print (m_GroundCheck.position);
+//			print (m_GroundCheck.position);
 			print("Wow");
 			if(isGrounded){
 				print("Jumping!");
@@ -30,13 +33,13 @@ public class PlayerMovement : MonoBehaviour {
 				isGrounded = false;
 			}			
 		}
-		m_Animator.SetBool("isGrounded", isGrounded);
+		m_Animator.SetBool("isGrounded", falling);
 		
 		if (hSpeed > 0) {
-			transform.localScale = new Vector3 (.75f, .75f, .75f);
+			transform.localScale = new Vector3 (1f, 1f, 1f);
 		} 
 		else if (hSpeed < 0) {
-			transform.localScale = new Vector3(-.75f,.75f,.75f);		
+			transform.localScale = new Vector3(-1f, 1f, 1f);		
 		}
 		this.rigidbody2D.velocity = new Vector2 (speed* hSpeed, this.rigidbody2D.velocity.y);
 	}
