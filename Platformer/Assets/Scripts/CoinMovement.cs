@@ -20,8 +20,8 @@ public class CoinMovement : MonoBehaviour {
 			PhysEngine.DestroyObject(this.gameObject);
 		}
 	}
-	void OnTriggerStay (Collider other)
-	{
-		OnTriggerEnter (other);
-	}
+//	void OnTriggerStay (Collider other)
+//	{
+//		OnTriggerEnter (other);
+//	}
 }
