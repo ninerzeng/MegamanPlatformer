@@ -5,16 +5,16 @@ using System.Collections;
 
 public class PE_Obj : MonoBehaviour {
 	public bool			still = false;
-	public PE_Collider	coll = PE_Collider.aabb;
+	public PE_Collider	coll = PE_Collider.sphere;
 	public PE_GravType	grav = PE_GravType.constant;
 	
-	public Vector2		acc = Vector2.zero;
+	public Vector3		acc = Vector3.zero;
 
-	public Vector2		vel = Vector2.zero;
-	public Vector2		vel0 = Vector2.zero;
+	public Vector3		vel = Vector3.zero;
+	public Vector3		vel0 = Vector3.zero;
 
-	public Vector2		pos0 = Vector2.zero;
-	public Vector2		pos1 = Vector2.zero;
+	public Vector3		pos0 = Vector3.zero;
+	public Vector3		pos1 = Vector3.zero;
 
 	public PE_Dir		dir = PE_Dir.still;
 
@@ -33,7 +33,7 @@ public class PE_Obj : MonoBehaviour {
 	}
 
 
-	void OnTriggerEnter2D(Collider2D other) {
+	void OnTriggerEnter(Collider other) {
 		// Ignore collisions of still objects
 		if (still) return;
 
@@ -43,11 +43,11 @@ public class PE_Obj : MonoBehaviour {
 		ResolveCollisionWith(otherPEO);
 	}
 
-	void OnTriggerStay2D(Collider2D other) {
-		OnTriggerEnter2D(other);
+	void OnTriggerStay(Collider other) {
+		OnTriggerEnter(other);
 	}
 
-	void OnTriggerExit2D(Collider2D other) {
+	void OnTriggerExit(Collider other) {
 		// Ignore collisions of still objects
 		if (still) return;
 		
@@ -70,19 +70,18 @@ public class PE_Obj : MonoBehaviour {
 
 			switch (that.coll) {
 			case PE_Collider.sphere:
-				print ("should not be here");
-//				// Sphere / Sphere collision
-//				float thisR, thatR, rad;
-//				// Note, this doesn't work with non-uniform or negative scales!
-//				thisR = Mathf.Max( this.transform.lossyScale.x, this.transform.lossyScale.y, this.transform.lossyScale.z ) / 2;
-//				thatR = Mathf.Max( that.transform.lossyScale.x, that.transform.lossyScale.y, that.transform.lossyScale.z ) / 2;
-//				rad = thisR + thatR;
-//
-//				Vector3 delta = pos1 - that.transform.position;
-//				delta.Normalize();
-//				delta *= rad;
-//
-//				posFinal = that.transform.position + delta;
+				// Sphere / Sphere collision
+				float thisR, thatR, rad;
+				// Note, this doesn't work with non-uniform or negative scales!
+				thisR = Mathf.Max( this.transform.lossyScale.x, this.transform.lossyScale.y, this.transform.lossyScale.z ) / 2;
+				thatR = Mathf.Max( that.transform.lossyScale.x, that.transform.lossyScale.y, that.transform.lossyScale.z ) / 2;
+				rad = thisR + thatR;
+
+				Vector3 delta = pos1 - that.transform.position;
+				delta.Normalize();
+				delta *= rad;
+
+				posFinal = that.transform.position + delta;
 				break;
 			}
 
@@ -97,31 +96,16 @@ public class PE_Obj : MonoBehaviour {
 				// With AABB collisions, we're usually concerned with corners and deciding which corner to consider when making comparisons.
 				// I believe that this corner should be determined by looking at the velocity of the moving body (this one)
 
-				Vector2 a0, a1, b; // a0-moving corner last frame, a1-moving corner now, b-comparison corner on other object
-				a0 = a1 = b = Vector2.zero;	 // Sets a default value to keep the compiler from complaining
-				Vector2 delta = pos1 - pos0;
-
-				Vector2 this_size = this.gameObject.GetComponent<BoxCollider2D>().size;
-				Vector2 that_size = that.gameObject.GetComponent<BoxCollider2D>().size;
-				Vector2 this_center = this.gameObject.GetComponent<BoxCollider2D>().center;
-				Vector2 that_center = that.gameObject.GetComponent<BoxCollider2D>().center;
-				
-				float this_scale_Y = this_size.y / 2f;
-				float that_scale_Y = that_size.y / 2f;
-				float distance_Y = this_scale_Y + that_scale_Y;
-				float this_scale_X = this_size.x / 2f;
-				float that_scale_X = that_size.x / 2f;
-				float distance_X = this_scale_X + that_scale_X;
-
+				Vector3 a0, a1, b; // a0-moving corner last frame, a1-moving corner now, b-comparison corner on other object
+				a0 = a1 = b = Vector3.zero;	 // Sets a default value to keep the compiler from complaining
+				Vector3 delta = pos1 - pos0;
 
 				if (dir == PE_Dir.down) {
 					// Just resolve to be on top
-				    a1 = pos1;
-					//a1 = this_center;
-					a1.y -= this_scale_Y;
+					a1 = pos1;
+					a1.y -= transform.lossyScale.y/2f;
 					b = that.pos1;
-					//b = that_center;
-					b.y += that_scale_Y;
+					b.y += that.transform.lossyScale.y/2f;
 					if (b.y > a1.y) {
 						posFinal.y += Mathf.Abs( a1.y - b.y );
 					}
@@ -135,9 +119,9 @@ public class PE_Obj : MonoBehaviour {
 				if (dir == PE_Dir.up) {
 					// Just resolve to be below
 					a1 = pos1;
-					a1.y += this_scale_Y;
+					a1.y += transform.lossyScale.y/2f;
 					b = that.pos1;
-					b.y -= that_scale_Y;
+					b.y -= that.transform.lossyScale.y/2f;
 					if (b.y < a1.y) {
 						posFinal.y -= Mathf.Abs( a1.y - b.y );
 					}
@@ -149,49 +133,49 @@ public class PE_Obj : MonoBehaviour {
 
 				if (dir == PE_Dir.upRight) { // Bottom, Left is the comparison corner
 					a1 = pos1;
-					a1.x += this_scale_X;
-					a1.y += this_scale_Y;
+					a1.x += transform.lossyScale.x/2f;
+					a1.y += transform.lossyScale.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x -= that_scale_X;
-					b.y -= that_scale_Y;
+					b.x -= that.transform.lossyScale.x/2f;
+					b.y -= that.transform.localScale.y/2f;
 				}
 
 				if (dir == PE_Dir.upLeft) { // Bottom, Right is the comparison corner
 					a1 = pos1;
-					a1.x -= this_scale_X;
-					a1.y += this_scale_Y;
+					a1.x -= transform.lossyScale.x/2f;
+					a1.y += transform.lossyScale.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x += that_scale_X;
-					b.y -= that_scale_Y;
+					b.x += that.transform.lossyScale.x/2f;
+					b.y -= that.transform.localScale.y/2f;
 				}
 
 				if (dir == PE_Dir.downLeft) { // Top, Right is the comparison corner
  					a1 = pos1;
-					a1.x -= this_scale_X;
-					a1.y -= this_scale_Y;
+					a1.x -= transform.lossyScale.x/2f;
+					a1.y -= transform.lossyScale.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x += that_scale_X;
-					b.y += that_scale_Y;
+					b.x += that.transform.lossyScale.x/2f;
+					b.y += that.transform.localScale.y/2f;
 				}
 
 				if (dir == PE_Dir.downRight) { // Top, Left is the comparison corner
 					a1 = pos1;
-					a1.x += this_scale_X;
-					a1.y -= this_scale_Y;
+					a1.x += transform.lossyScale.x/2f;
+					a1.y -= transform.lossyScale.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x -= that_scale_X;
-					b.y += that_scale_Y;
+					b.x -= that.transform.lossyScale.x/2f;
+					b.y += that.transform.localScale.y/2f;
 				}
 
 				// In the x dimension, find how far along the line segment between a0 and a1 we need to go to encounter b
 				float u = (b.x - a0.x) / (a1.x - a0.x);
 
 				// Determine this point using linear interpolation (see the appendix of the book)
-				Vector2 pU = (1-u)*a0 + u*a1;
+				Vector3 pU = (1-u)*a0 + u*a1;
 
 				// Use pU.y vs. b.y to tell which side of PE_Obj "that" PE_Obj "this" should be on
 				switch (dir) {

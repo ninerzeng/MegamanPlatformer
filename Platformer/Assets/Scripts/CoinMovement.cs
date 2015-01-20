@@ -12,16 +12,16 @@ public class CoinMovement : MonoBehaviour {
 	void Update () {
 	
 	}
-	void OnTriggerEnter2D(Collider2D other) 
+	void OnTriggerEnter(Collider other) 
 	{
-		print ("Bang!");
 		if (other.tag == "Player") 
 		{
-			Destroy(this.gameObject);
+			print ("Bang!");
+			PhysEngine.DestroyObject(this.gameObject);
 		}
 	}
-	void OnTriggerStay2D (Collider2D other)
+	void OnTriggerStay (Collider other)
 	{
-		OnTriggerEnter2D (other);
+		OnTriggerEnter (other);
 	}
 }

@@ -115,6 +115,12 @@ TextureImporter:
     21300220: items_110
     21300222: items_111
     21300224: items_112
+    21300226: items_21
+    21300228: items_22
+    21300230: Weapon Pellet Large
+    21300232: Weapon Pellet Large 2
+    21300234: items_23
+    21300236: items_24
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -150,7 +156,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -366,7 +372,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: LifeEnergyPellet_large_1
+    - name: items_21
       rect:
         serializedVersion: 2
         x: 113
@@ -374,9 +380,9 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: LifeEnergyPellet_large_2
+    - name: items_22
       rect:
         serializedVersion: 2
         x: 133
@@ -384,9 +390,9 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WeaponEnergyPellet_large_1
+    - name: items_23
       rect:
         serializedVersion: 2
         x: 153
@@ -396,7 +402,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WeaponEnergyPellet_large_2
+    - name: items_24
       rect:
         serializedVersion: 2
         x: 173
@@ -404,7 +410,7 @@ TextureImporter:
         width: 16
         height: 12
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: items_25
       rect:

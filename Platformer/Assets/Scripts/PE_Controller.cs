@@ -4,9 +4,9 @@ using System.Collections;
 public class PE_Controller : MonoBehaviour {
 	private PE_Obj peo;
 
-	public Vector2	vel;
+	public Vector3	vel;
 	public bool		grounded = false;
-
+	public bool		isGrounded = true;
 	public float	hSpeed = 10;
 	public float	acceleration = 10;
 	public float	jumpVel = 10;
@@ -27,7 +27,7 @@ public class PE_Controller : MonoBehaviour {
 	void Update () {
 		vel = peo.vel; // Pull velocity from the PE_Obj
 		grounded = (peo.ground != null);
-
+		isGrounded = grounded;
 		// Horizontal movement
 		float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
 		vel.x = vX * hSpeed;
@@ -40,9 +40,10 @@ public class PE_Controller : MonoBehaviour {
 //		vel.x += vX * accMult.x * acceleration * Time.deltaTime;
 
 		// Jumping with A (which is x or .)
-		if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Period)) {
 			// Jump if you're grounded
 			if (grounded) {
+				isGrounded = false;
 				vel.y = jumpVel;
 				peo.ground = null; // Jumping will set ground = null
 			}

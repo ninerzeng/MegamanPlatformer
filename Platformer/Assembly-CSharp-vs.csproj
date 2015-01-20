@@ -48,8 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CoinMovement.cs" />
      <Compile Include="Assets\Scripts\GameManagerScript.cs" />
-     <Compile Include="Assets\Scripts\LockAspectRatio.cs" />
-     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\PE_Controller.cs" />
+     <Compile Include="Assets\Scripts\PE_Obj.cs" />
+     <Compile Include="Assets\Scripts\PhysEngine.cs" />
      <Compile Include="Assets\Scripts\Settings.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

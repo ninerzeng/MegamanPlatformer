@@ -26,7 +26,7 @@ public enum PE_Dir { // The direction in which the PE_Obj is moving
 public class PhysEngine : MonoBehaviour {
 	static public List<PE_Obj>	objs;
 
-	public Vector2		gravity = new Vector2(0,-9.8f);
+	public Vector3		gravity = new Vector3(0,-9.8f,0);
 
 	// Use this for initialization
 	void Awake() {
@@ -46,6 +46,8 @@ public class PhysEngine : MonoBehaviour {
 
 		// Finalize positions
 		foreach (PE_Obj po in objs) {
+			if(po == null)
+				return;
 			po.transform.position = po.pos1;
 		}
 
@@ -53,14 +55,16 @@ public class PhysEngine : MonoBehaviour {
 
 
 	public void TimeStep(PE_Obj po, float dt) {
-		if (po.still) {
+		if (po == null)
+			return;
+		if (po.still ) {
 			po.pos0 = po.pos1 = po.transform.position;
 			return;
 		}
 
 		// Velocity
 		po.vel0 = po.vel;
-		Vector2 tAcc = po.acc;
+		Vector3 tAcc = po.acc;
 		switch (po.grav) {
 		case PE_GravType.constant:
 			tAcc += gravity;
@@ -88,5 +92,17 @@ public class PhysEngine : MonoBehaviour {
 		po.pos1 = po.pos0 = po.transform.position;
 		po.pos1 += po.vel * dt;
 
+	}
+	public void destroyObject(GameObject toBeDestroyed)
+	{
+		foreach (PE_Obj po in objs) {
+			if(po.Equals(toBeDestroyed))
+			{
+				objs.Remove(po);
+				return;
+			}
+				
+		}
+	
 	}
 }
