@@ -1,18 +1,24 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManagerScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Pill_bro.cs">
     <Files>
       <File FileName="Assets/Weapon.cs" Line="49" Column="1" />
       <File FileName="Assets/Scripts/CoinMovement.cs" Line="19" Column="25" />
-      <File FileName="Assets/Scripts/PE_Obj.cs" Line="57" Column="5" />
-      <File FileName="Assets/Scripts/PhysEngine.cs" Line="77" Column="24" />
+      <File FileName="Assets/Scripts/PE_Obj.cs" Line="10" Column="18" />
+      <File FileName="Assets/Scripts/PhysEngine.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GameManagerScript.cs" Line="90" Column="3" />
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="36" Column="32" />
-      <File FileName="Assets/Scripts/PE_Controller.cs" Line="46" Column="20" />
+      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="37" Column="40" />
+      <File FileName="Assets/Scripts/PE_Controller.cs" Line="1" Column="1" />
+      <File FileName="Assets/Pill_bro.cs" Line="22" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True" />
+            <Node name="Pill_bro.cs" selected="True" />
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
