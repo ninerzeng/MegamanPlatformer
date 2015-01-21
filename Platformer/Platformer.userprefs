@@ -1,18 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PE_Obj.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerHealth.cs">
     <Files>
-      <File FileName="Assets/Scripts/PE_Obj.cs" Line="119" Column="28" />
-      <File FileName="Assets/Scripts/CoinMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameManagerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Weapon.cs" Line="18" Column="51" />
+      <File FileName="Assets/Scripts/CoinMovement.cs" Line="3" Column="1" />
+      <File FileName="Assets/Scripts/PE_Obj.cs" Line="6" Column="36" />
+      <File FileName="Assets/Scripts/PE_Controller.cs" Line="46" Column="24" />
+      <File FileName="Assets/Scripts/PhysEngine.cs" Line="45" Column="3" />
+      <File FileName="Assets/PlayerHealth.cs" Line="8" Column="15" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="PE_Obj.cs" selected="True" />
-            </Node>
+            <Node name="Scripts" expanded="True" />
+            <Node name="PlayerHealth.cs" selected="True" />
           </Node>
         </State>
       </Pad>
