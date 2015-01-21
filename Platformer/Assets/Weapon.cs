@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Weapon : MonoBehaviour {
-	public GameObject bullet_prefab;
+	public GameObject left_bullet_prefab;
+	public GameObject right_bullet_prefab;
 	public float fire_rate = 0;
 	public float damage = 10;
 	//what you don't want the weapon to hit. Player, background, etc
@@ -14,9 +15,16 @@ public class Weapon : MonoBehaviour {
 	
 	void Shoot(){
 		//Vector2 fire_point_position = new Vector2 (firepoint.position.x, firepoint.position.y);
-		print ("bullet shot");
-		GameObject bullet = Instantiate (bullet_prefab) as GameObject;
-		bullet.transform.position = this.transform.position;
+		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+			print ("bullet fired left");
+			GameObject bullet = Instantiate(left_bullet_prefab) as GameObject;
+			bullet.transform.position = this.transform.position;
+		} 
+		else {
+			print ("bullet shot right");
+			GameObject bullet = Instantiate (right_bullet_prefab) as GameObject;
+			bullet.transform.position = this.transform.position;
+				}
 		//		Vector2 bullet_speed;
 		//		bullet_speed.x = 5;
 		//		bullet_speed.y = 0;
@@ -33,7 +41,7 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.C)) {
+		if (Input.GetKeyDown (KeyCode.Z) || Input.GetKeyDown (KeyCode.Comma)) {
 			Shoot();
 		}
 	}
