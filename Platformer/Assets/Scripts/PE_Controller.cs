@@ -6,7 +6,6 @@ public class PE_Controller : MonoBehaviour {
 
 	public Vector3	vel;
 	public bool		grounded = false;
-	public bool		isGrounded = true;
 	public float	hSpeed = 10;
 	public float	acceleration = 10;
 	public float	jumpVel = 10f;
@@ -27,7 +26,7 @@ public class PE_Controller : MonoBehaviour {
 	void Update () {
 		vel = peo.vel; // Pull velocity from the PE_Obj
 		grounded = (peo.ground != null);
-		isGrounded = grounded;
+		
 		// Horizontal movement
 		float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
 		vel.x = vX * hSpeed;
@@ -43,7 +42,6 @@ public class PE_Controller : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Period)) {
 			// Jump if you're grounded
 			if (grounded) {
-				isGrounded = false;
 				vel.y = jumpVel;
 				peo.ground = null; // Jumping will set ground = null
 			}

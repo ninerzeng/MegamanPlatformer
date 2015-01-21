@@ -1,0 +1,11 @@
+Potter/Library/*
+Potter/Temp/*
+Potter/Obj/*
+
+*.sln 
+*.csproj
+*.unityproj
+*.user
+*.userprefs
+*.DS_store
+
