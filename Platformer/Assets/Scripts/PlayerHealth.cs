@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour {
 		if (playerHealth <= 0) {
 			PE_Controller controller = this.GetComponent<PE_Controller>();	
 			controller.enabled = false; 
-			GameManagerScript.GameOverMenu(2);
+//			GameManagerScript.GameOverMenu(2);
 
 
 		}

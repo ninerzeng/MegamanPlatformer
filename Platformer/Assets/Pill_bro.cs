@@ -5,7 +5,7 @@ public class Pill_bro : MonoBehaviour {
 	private PE_Obj peo;
 	public float health = 10;
 	public GameObject player;
-
+	public GameObject HealthPackPrefab;
 	// Use this for initialization
 	void Start () {
 		peo = GetComponent<PE_Obj>();
@@ -34,6 +34,9 @@ public class Pill_bro : MonoBehaviour {
 					print ("DESTROY");
 					PhysEngine.objs.RemoveAt (ObjIndex);	
 					Destroy (this.gameObject);
+					Vector3 pillBroLoc = this.transform.position;
+					pillBroLoc.y -= .5f;
+					Instantiate(this.HealthPackPrefab, pillBroLoc, Quaternion.identity);
 				}
 				}
 			} 
