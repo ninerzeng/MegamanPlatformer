@@ -4,6 +4,7 @@ using System.Collections;
 
 
 public class PE_Obj : MonoBehaviour {
+	public bool 		deleted = false;
 	public bool			still = false;
 	public PE_Collider	coll = PE_Collider.sphere;
 	public PE_GravType	grav = PE_GravType.constant;

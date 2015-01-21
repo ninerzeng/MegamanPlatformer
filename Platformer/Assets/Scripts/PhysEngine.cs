@@ -93,16 +93,22 @@ public class PhysEngine : MonoBehaviour {
 		po.pos1 += po.vel * dt;
 
 	}
-	public void destroyObject(GameObject toBeDestroyed)
-	{
-		foreach (PE_Obj po in objs) {
-			if(po.Equals(toBeDestroyed))
-			{
-				objs.Remove(po);
-				return;
-			}
-				
-		}
+//	public void destroyObject(GameObject toBeDestroyed)
+//	{
+//		print ("Physics!");
+//		int ObjIndex = this.objs.IndexOf (toBeDestroyed.GetComponent<PE_Obj>() as PE_Obj);
+//		if (ObjIndex!= -1) {
+//			this.objs.RemoveAt(ObjIndex);
+//		}
+		//		foreach (PE_Obj po in objs) {
+//			if(po.Equals(toBeDestroyed))
+//			{
+//				print ("DESTROY");
+//				objs.Remove(po);
+//				Destroy (toBeDestroyed,.2f);
+//				return;
+//			}
+//		}
 	
-	}
+//	}
 }

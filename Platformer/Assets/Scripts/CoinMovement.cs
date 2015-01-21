@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class CoinMovement : MonoBehaviour {
-
 	// Use this for initialization
 	void Start () {
 	
@@ -14,14 +13,12 @@ public class CoinMovement : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other) 
 	{
-		if (other.tag == "Player") 
-		{
-			print ("Bang!");
-			PhysEngine.DestroyObject(this.gameObject);
-		}
+		int ObjIndex = PhysEngine.objs.IndexOf (this.GetComponent<PE_Obj>() as PE_Obj);
+		if (ObjIndex != -1) {
+			print ("DESTROY");
+			PhysEngine.objs.RemoveAt(ObjIndex);	
+			Destroy (this.gameObject);
+      }
+				
 	}
-//	void OnTriggerStay (Collider other)
-//	{
-//		OnTriggerEnter (other);
-//	}
 }
