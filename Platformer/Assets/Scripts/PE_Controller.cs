@@ -9,13 +9,13 @@ public class PE_Controller : MonoBehaviour {
 	public bool		isGrounded = true;
 	public float	hSpeed = 10;
 	public float	acceleration = 10;
-	public float	jumpVel = 10;
-	public float	airSteeringAmt = 1f;
+	public float	jumpVel = 10f;
+	public float	airSteeringAmt = 0.5f;
 
-	public float	airMomentumX = 1; // 0 for no momentum (i.e. 100% drag), 1 for total momentum
+	public float	airMomentumX = 1f; // 0 for no momentum (i.e. 100% drag), 1 for total momentum
 	public float	groundMomentumX = 0.1f;
 
-	public Vector2	maxSpeed = new Vector2( 10, 15 ); // Different x & y to limit maximum falling velocity
+	public Vector2	maxSpeed = new Vector2( 10, 30 ); // Different x & y to limit maximum falling velocity
 
 	// Use this for initialization
 	void Start () {
