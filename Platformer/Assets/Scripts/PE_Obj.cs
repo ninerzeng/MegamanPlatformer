@@ -4,6 +4,9 @@ using System.Collections;
 
 
 public class PE_Obj : MonoBehaviour {
+	public float stunStrength=5; 
+	public float stunDelay = .25f;
+
 	public bool 		deleted = false;
 	public bool			still = false;
 	public PE_Collider	coll = PE_Collider.sphere;
@@ -35,6 +38,33 @@ public class PE_Obj : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other) {
+		//No collision if enemy
+		if (other.tag == "Enemy" && this.tag=="Player") {
+			print ("found enemy");
+			PE_Obj nowPE_Obj = this.GetComponent<PE_Obj> ();
+			Vector3 stunVel = nowPE_Obj.vel;
+			Vector3 directionOfStun = this.transform.position - other.transform.position; 
+			directionOfStun.Normalize ();
+			print (directionOfStun);
+			//stun normally if player is on same level or above the 
+			if (directionOfStun.x >= 0) {
+					stunVel.x = stunStrength;
+					stunVel.y = stunStrength;
+			} else {
+					stunVel.y = stunStrength;
+					stunVel.x = -1 * stunStrength;
+
+			}
+			PE_Controller myController = this.GetComponent<PE_Controller> ();
+			myController.enabled = false;
+			print (stunVel);
+			nowPE_Obj.vel = stunVel;
+			StartCoroutine (bounceDelay (myController));
+			return;
+		}
+		if (this.tag == "Enemy" && other.tag == "Player") {
+			return;		
+		}
 		// Ignore collisions of still objects
 		if (still) return;
 
@@ -255,6 +285,10 @@ public class PE_Obj : MonoBehaviour {
 
 		transform.position = pos1 = posFinal;
 	}
-
+	IEnumerator bounceDelay(PE_Controller myController) {
+			yield return new WaitForSeconds(stunDelay);
+			myController.enabled = true;
+			
+		}
 
 }

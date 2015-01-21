@@ -14,7 +14,11 @@ public class GameManagerScript : MonoBehaviour {
 		get;
 		set;
 	}
-
+	public bool GameOver {
+		get;
+		set;
+	}
+	
 	private Settings m_Settings = new Settings();
 
 	private readonly string[] MenuNames = new string[]
@@ -41,7 +45,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Awake()
 	{
-		isMenuActive = false
+		isMenuActive = true
 			;
 		Application.runInBackground = true;
 		DontDestroyOnLoad (gameObject);
@@ -57,7 +61,11 @@ public class GameManagerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (GameOver == true) {
+//			this.GameOverMenu (2);				
+		}
+
+
 	}
 	private void MainMenu (int id)
 	{
@@ -73,7 +81,7 @@ public class GameManagerScript : MonoBehaviour {
 	}
 	private void PassWord(int id)
 	{
-		GUILayout.Label ("Test");
+		GUILayout.Label ("Megaman II Prototype");
 		if(GUILayout.Button ("Back")) // this is temporary 
 		{
 			m_SoundSource.PlayOneShot(ClickSound);
@@ -81,8 +89,9 @@ public class GameManagerScript : MonoBehaviour {
 		}
 	}
 
-	private void GameOverMenu(int id){
-
+	public static void GameOverMenu(int id){
+		GUILayout.Label ("GameOver");
+		
 	}
 	void OnGUI()
 	{

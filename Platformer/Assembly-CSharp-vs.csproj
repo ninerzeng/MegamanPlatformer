@@ -46,12 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\PlayerHealth.cs" />
+     <Compile Include="Assets\Prefab\Bullet.cs" />
      <Compile Include="Assets\Scripts\CoinMovement.cs" />
      <Compile Include="Assets\Scripts\GameManagerScript.cs" />
      <Compile Include="Assets\Scripts\PE_Controller.cs" />
      <Compile Include="Assets\Scripts\PE_Obj.cs" />
      <Compile Include="Assets\Scripts\PhysEngine.cs" />
+     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Settings.cs" />
      <Compile Include="Assets\Weapon.cs" />
  <Reference Include="UnityEngine.UI">

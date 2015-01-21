@@ -13,12 +13,16 @@ public class CoinMovement : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other) 
 	{
-		int ObjIndex = PhysEngine.objs.IndexOf (this.GetComponent<PE_Obj>() as PE_Obj);
-		if (ObjIndex != -1) {
-			print ("DESTROY");
-			PhysEngine.objs.RemoveAt(ObjIndex);	
-			Destroy (this.gameObject);
-      }
-				
+
+		if (other.tag == "Player") {
+			PlayerHealth hp = other.GetComponent<PlayerHealth>();
+			hp.playerHealth +=30;
+			int ObjIndex = PhysEngine.objs.IndexOf (this.GetComponent<PE_Obj>() as PE_Obj);
+			if (ObjIndex != -1) {
+				print ("DESTROY");
+				PhysEngine.objs.RemoveAt(ObjIndex);	
+				Destroy (this.gameObject);
+	      }
+		}
 	}
 }
