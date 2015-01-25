@@ -4,9 +4,9 @@ using System.Collections;
 
 
 public class PE_Obj : MonoBehaviour {
-	public float stunStrength=5; 
-	public float stunDelay = .25f;
-
+	public float 		stunStrength=2; 
+	public float 		stunDelay = .45f;
+	public bool 		stunned = false;
 	public bool 		deleted = false;
 	public bool			still = false;
 	public PE_Collider	coll = PE_Collider.sphere;
@@ -19,7 +19,7 @@ public class PE_Obj : MonoBehaviour {
 
 	public Vector3		pos0 = Vector3.zero;
 	public Vector3		pos1 = Vector3.zero;
-
+	public bool			isClimbing = false;
 	public PE_Dir		dir = PE_Dir.still;
 
 	public PE_Obj		ground = null; // Stores whether this is on the ground
@@ -29,40 +29,82 @@ public class PE_Obj : MonoBehaviour {
 		if (PhysEngine.objs.IndexOf(this) == -1) {
 			PhysEngine.objs.Add(this);
 		}
+
 	}
 
 	// Update is called once per frame
 	void Update () {
 	
+	
 	}
 
 
 	void OnTriggerEnter(Collider other) {
-		//No collision if enemy
-		if (other.tag == "Enemy" && this.tag=="Player") {
-			print ("found enemy");
-			PE_Obj nowPE_Obj = this.GetComponent<PE_Obj> ();
-			Vector3 stunVel = nowPE_Obj.vel;
-			Vector3 directionOfStun = this.transform.position - other.transform.position; 
-			directionOfStun.Normalize ();
-			print (directionOfStun);
-			//stun normally if player is on same level or above the 
-			if (directionOfStun.x >= 0) {
-					stunVel.x = stunStrength;
-					stunVel.y = stunStrength;
-			} else {
-					stunVel.y = stunStrength;
-					stunVel.x = -1 * stunStrength;
-
+		if(this.tag == "Player" && other.gameObject.tag == "Ladder")
+		{
+			isClimbing = true;
+			if(Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+			{
+				print ("updown input detected");
+				float ladderX = other.transform.position.x;
+				print (other.transform.position);
+				Vector3 playerLoc = this.transform.position;
+				print (playerLoc);
+				playerLoc.x = ladderX;
+				this.gameObject.transform.position = playerLoc;
 			}
-			PE_Controller myController = this.GetComponent<PE_Controller> ();
-			myController.enabled = false;
-			print (stunVel);
-			nowPE_Obj.vel = stunVel;
-			StartCoroutine (bounceDelay (myController));
+
 			return;
+
 		}
-		if (this.tag == "Enemy" && other.tag == "Player") {
+				//No collision if enemy
+				if (other.tag == "Enemy" && this.tag == "Player") {
+						PlayerHealth m_PlayerHealth = this.GetComponent<PlayerHealth> ();
+						if (m_PlayerHealth.playerHealth <=0 || stunned == true)
+								return;
+
+						if (stunned == false) {
+								PE_Obj nowPE_Obj = this.GetComponent<PE_Obj> ();
+								if(m_PlayerHealth.invulnerable ==false)
+									m_PlayerHealth.playerHealth-=10;
+								if (m_PlayerHealth.playerHealth <=0) {
+										Vector3 zeroVector = new Vector3 (0f, 0f, 0f);
+										nowPE_Obj.vel = zeroVector;
+										Animator animator = this.GetComponent<Animator> ();
+										print ("You died!");
+										animator.SetBool("death", true);
+										PE_Controller m_pController = this.GetComponent<PE_Controller>();
+										m_pController.enabled = false; 
+										return;
+								} else {
+										Vector3 stunVel = nowPE_Obj.vel;
+										Vector3 directionOfStun = this.transform.position - other.transform.position; 
+										directionOfStun.Normalize ();
+//				print (directionOfStun);
+										//stun normally if player is on same level or above the 
+										if (directionOfStun.x >= 0) {
+												stunVel.x = stunStrength;
+												//					stunVel.y = stunStrength;
+										} else {
+												//					stunVel.y = stunStrength;
+												stunVel.x = -1 * stunStrength;
+					
+										}
+				
+										PE_Controller myController = this.GetComponent<PE_Controller> ();
+				
+										myController.enabled = false;
+										nowPE_Obj.vel = stunVel;
+										StartCoroutine (bounceDelay (myController));
+
+								}
+
+			
+								return;
+						}
+				}
+	
+		if (this.tag == "Enemy" && other.gameObject.tag == "Player") {
 			return;		
 		}
 		// Ignore collisions of still objects
@@ -78,7 +120,12 @@ public class PE_Obj : MonoBehaviour {
 		OnTriggerEnter(other);
 	}
 
-	void OnTriggerExit(Collider other) {
+	void OnTriggerxit(Collider other) {
+		if(other.gameObject.tag == "Ladder" && this.tag == "Player")
+		{
+			isClimbing = false;
+			grav = PE_GravType.constant;
+		}
 		// Ignore collisions of still objects
 		if (still) return;
 		
@@ -286,9 +333,18 @@ public class PE_Obj : MonoBehaviour {
 		transform.position = pos1 = posFinal;
 	}
 	IEnumerator bounceDelay(PE_Controller myController) {
+			stunned = true;
+			Animator animator = this.GetComponent<Animator>();
+			
+			animator.SetBool("stunned", true);
 			yield return new WaitForSeconds(stunDelay);
 			myController.enabled = true;
+		//to prevent stunlocking
+			yield return new WaitForSeconds (.1f);
+			animator.SetBool("stunned", false);
 			
+			
+			stunned = false;
 		}
 
 }
