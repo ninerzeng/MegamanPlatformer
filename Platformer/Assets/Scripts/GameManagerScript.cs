@@ -45,7 +45,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Awake()
 	{
-		isMenuActive = true
+		isMenuActive = false
 			;
 		Application.runInBackground = true;
 		DontDestroyOnLoad (gameObject);
