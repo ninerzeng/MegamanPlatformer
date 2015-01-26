@@ -64,7 +64,7 @@ public class Fireball : MonoBehaviour {
 
 		float x = 0;
 		if (Mathf.Abs(player.transform.position.x - this.transform.position.x)< maxXdistance)
-		    x = Mathf.Abs (player.transform.position.x);
+		    x = Mathf.Abs (this.transform.position.x - player.transform.position.x);
 		else
 		    x = maxXdistance;
 		print (x);

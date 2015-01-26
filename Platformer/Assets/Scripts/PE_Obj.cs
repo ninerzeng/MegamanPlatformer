@@ -22,6 +22,7 @@ public class PE_Obj : MonoBehaviour {
 	public Vector3		_pos1 = Vector3.zero;
 
 	public bool			isClimbing = false;
+	public bool 		climbable = false;
 	public PE_Dir		dir = PE_Dir.still;
 	
 	public PE_Obj		ground = null; // Stores whether this is on the ground
@@ -64,18 +65,26 @@ public class PE_Obj : MonoBehaviour {
 	
 	
 	void OnTriggerEnter(Collider other) {
+		if (this.tag == "Player" && isClimbing || other.tag == "Player" && other.GetComponent<PE_Obj>().isClimbing) {
+//			print("you shall pass");
+			return;		
+		}
 		if(this.tag == "Player" && other.gameObject.tag == "Ladder")
 		{
-			isClimbing = true;
+			climbable = true;
+			print ("found a ladder");
 			if(Mathf.Abs(Input.GetAxis("Vertical")) > 0)
 			{
+				isClimbing = true;
+				grav = PE_GravType.none;
 				print ("updown input detected");
 				float ladderX = other.transform.position.x;
 				print (other.transform.position);
 				Vector3 playerLoc = this.transform.position;
 				print (playerLoc);
 				playerLoc.x = ladderX;
-				this.gameObject.transform.position = playerLoc;
+				print (playerLoc);
+				this.transform.position = playerLoc;
 			}
 			
 			return;
@@ -145,15 +154,17 @@ public class PE_Obj : MonoBehaviour {
 		OnTriggerEnter(other);
 	}
 	
-	void OnTriggerxit(Collider other) {
-		if(other.gameObject.tag == "Ladder" && this.tag == "Player")
+	void OnTriggerExit(Collider other) {
+		if(this.tag == "Player" && other.gameObject.tag == "Ladder")
 		{
+			print ("exitLadder");
 			isClimbing = false;
+			climbable = false;
 			grav = PE_GravType.constant;
 		}
+		
 		// Ignore collisions of still objects
 		if (still) return;
-		
 		PE_Obj otherPEO = other.GetComponent<PE_Obj>();
 		if (otherPEO == null) return;
 		

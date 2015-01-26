@@ -29,7 +29,8 @@ public class PE_Controller : MonoBehaviour {
 		grounded = (peo.ground != null);
 		animator.SetBool("grounded",grounded);
 		// Horizontal movement
-		UpdateRun ();
+		if(peo.isClimbing == false)
+			UpdateRun ();
 		UpdateJump ();
 		UpdateClimb ();
 
@@ -47,8 +48,12 @@ public class PE_Controller : MonoBehaviour {
 				//did that for testing
 //				this.transform.Translate(0,20 * Time.deltaTime,0);
 				peo.grav = PE_GravType.none;
+				Vector3 playerLoc = this.transform.position;
 				vel.y = ladderSpeed;
+				this.transform.position = playerLoc;
 				SendMessage("onClimb",SendMessageOptions.DontRequireReceiver);
+				animator.SetBool("grounded", true);
+				animator.SetFloat("speed", 0f);
 				animator.SetBool("climbing", true);
 				animator.SetBool("climbIdle", false);
 				
@@ -56,11 +61,16 @@ public class PE_Controller : MonoBehaviour {
 			//this is down
 			else if(Input.GetAxis("Vertical") < 0)
 			{
-				vel.y = -ladderSpeed;
 				peo.grav = PE_GravType.none;
+				Vector3 playerLoc = this.transform.position;
+//				playerLoc.y = -ladderSpeed*Time.deltaTime;
+				vel.y = -ladderSpeed;
+				this.transform.position = playerLoc;
 				
 //				this.transform.Translate(0,-10 * Time.deltaTime,0);
 				animator.SetBool("climbing", true);
+				animator.SetBool("grounded", true);
+				animator.SetFloat("speed", 0f);
 				animator.SetBool("climbIdle", false);
 				
 				SendMessage("onClimb",SendMessageOptions.DontRequireReceiver);
@@ -68,7 +78,8 @@ public class PE_Controller : MonoBehaviour {
 			else
 			{
 				//if you are not moving then just go idle on the ladder
-				
+				vel = new Vector3(0f,0f,0f);
+				animator.SetBool("grounded", true);
 				animator.SetBool("climbIdle", true);
 				animator.SetBool("climbing", false);
 				
