@@ -15,6 +15,10 @@ public class PE_Controller : MonoBehaviour {
 	public float	groundMomentumX = 0.1f;
 
 	public Vector2	maxSpeed = new Vector2( 10, 30 ); // Different x & y to limit maximum falling velocity
+
+	private float slide_start_time = -1f;
+	public bool sliding = false;
+
 	private Animator animator;
 	// Use this for initialization
 	void Start () {
@@ -29,10 +33,24 @@ public class PE_Controller : MonoBehaviour {
 		grounded = (peo.ground != null);
 		animator.SetBool("grounded",grounded);
 		// Horizontal movement
-		UpdateRun ();
-		UpdateJump ();
-		UpdateClimb ();
-
+//		if ((slide_start_time < 0f) || ((Time.time - slide_start_time) > 0.5f && slide_start_time >= 0f)) 
+//		{
+//			sliding = false;
+//		}
+		if (slide_start_time < 0f) {
+			sliding = false;
+			} 
+		else if (Time.time - slide_start_time > 0.5f && sliding==true) {
+			peo.vel = peo.vel/1.5f;
+			sliding = false;
+			print ("end slide");
+			}
+		if (sliding == false) {
+			UpdateRun ();
+			UpdateJump ();
+			UpdateClimb ();
+			UpdateSlide ();
+		}
 		peo.vel = vel;
 	}
 	void UpdateClimb()
@@ -107,6 +125,29 @@ public class PE_Controller : MonoBehaviour {
 			{
 				vel.y = jumpVel;
 				peo.ground = null; // Jumping will set ground = null
+			}
+		}
+	}
+
+	void UpdateSlide()
+	{
+		//Slide with S or Down
+		slide_start_time = -1f;
+
+		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.DownArrow)) 
+		{
+			if(grounded)
+			{
+				print ("start slide");
+				sliding = true; 
+				slide_start_time = Time.time; 
+				//last for 0.5 seconds
+				//increase speed momentarily
+				Vector3 flat_speed = peo.vel;
+				peo.vel = 1.5f * flat_speed;
+				//change collider box
+				//change animation
+
 			}
 		}
 	}

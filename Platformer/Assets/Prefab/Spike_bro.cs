@@ -5,11 +5,13 @@ public class Spike_bro : MonoBehaviour {
 	private PE_Obj peo;
 	public GameObject megaman;
 	public float health = 30f;
-	public GameObject spike_left;
-	public GameObject spike_left_up;
-	public GameObject spike_up;
-	public GameObject spike_right_up;
-	public GameObject spike_right;
+	private bool shooting = false;
+//	public GameObject spike_left;
+//	public GameObject spike_left_up;
+//	public GameObject spike_up;
+//	public GameObject spike_right_up;
+//	public GameObject spike_right;
+	public GameObject spike;
 	private int hit = 0;
 	private float hit_time = -1f;
 	// Use this for initialization
@@ -22,11 +24,16 @@ public class Spike_bro : MonoBehaviour {
 		//start shooting
 		if (Mathf.Abs(this.transform.position.x - megaman.transform.position.x) < 5) {
 			//fire 5 spikes, at -90, -45, 0, 45, 90 respective to pos Y axis
-
+			if(shooting == false){
+				shooting = true;
+				Shooting ();
+			}
+			shooting = true;
 		}
 		//if you hit it, then roll towards the player
 		if (hit == 1 && (Time.time - hit_time)>0.5) {
 			//change animation
+			shooting = false;
 			//if player is to the left, move left
 			if (megaman.transform.position.x < this.transform.position.x) {
 				peo.vel.x = -5f;
@@ -36,6 +43,44 @@ public class Spike_bro : MonoBehaviour {
 				peo.vel.x = 5f;
 			}
 		}
+	}
+	void Shooting(){
+		if (shooting == true) {
+			InvokeRepeating("Shoot", 0.1f, 1f);
+		} 
+	}
+
+	void Shoot(){
+		//fire 5 spikes, at -90, -45, 0, 45, 90 respective to pos Y axis
+		GameObject spike_left = Instantiate(spike) as GameObject;
+		spike_left.transform.position = this.transform.position;
+		PE_Obj peo_left = spike_left.GetComponent<PE_Obj>();
+		peo_left.vel.x = -10f;
+		peo_left.vel.y = 0f;
+		
+//		GameObject spike_left_up = Instantiate(spike) as GameObject;
+//		spike_left_up.transform.position = this.transform.position;
+//		PE_Obj peo_left_up = spike_left_up.GetComponent<PE_Obj>();
+//		peo_left_up.vel.x = -10f;
+//		peo_left_up.vel.y = 10f;
+		
+		GameObject spike_up = Instantiate(spike) as GameObject;
+		spike_up.transform.position = this.transform.position;
+		PE_Obj peo_up = spike_up.GetComponent<PE_Obj>();
+		peo_up.vel.x = 0f;
+		peo_up.vel.y = 10f;
+		
+//		GameObject spike_right_up = Instantiate(spike) as GameObject;
+//		spike_right_up.transform.position = this.transform.position;
+//		PE_Obj peo_up_right = spike_right_up.GetComponent<PE_Obj>();
+//		peo_up_right.vel.x = 10f;
+//		peo_up_right.vel.y = 10f;
+		
+		GameObject spike_right = Instantiate(spike) as GameObject;
+		spike_right.transform.position = this.transform.position;
+		PE_Obj peo_right = spike_right.GetComponent<PE_Obj>();
+		peo_right.vel.x = 10f;
+		peo_right.vel.y = 0f;
 	}
 
 	void OnTriggerEnter(Collider other){
