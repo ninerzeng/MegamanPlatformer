@@ -18,6 +18,8 @@ public class PE_Controller : MonoBehaviour {
 
 	private float slide_start_time = -1f;
 	public bool sliding = false;
+	//false is left, true is right
+	//public bool last_direction = true;
 
 	private Animator animator;
 	// Use this for initialization
@@ -136,9 +138,11 @@ public class PE_Controller : MonoBehaviour {
 		if (vel.x > 0) 
 		{
 			transform.localScale = new Vector3 (1f, 1f, 1f);
+			//last_direction = true;
 		} else if (vel.x < 0) 
 		{
-			transform.localScale = new Vector3 (-1f, 1f, 1f);		
+			transform.localScale = new Vector3 (-1f, 1f, 1f);	
+			//last_direction = false;
 		}
 	}
 	void UpdateJump()
