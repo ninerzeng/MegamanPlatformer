@@ -2,17 +2,24 @@
 using System.Collections;
 
 public class Weapon : MonoBehaviour {
+	public GameObject megaman;
 	public GameObject left_bullet_prefab;
 	public GameObject right_bullet_prefab;
 	public float fire_rate = 0;
 	public float damage = 10;
 	//what you don't want the weapon to hit. Player, background, etc
 	public LayerMask not_to_hit;
-	
+	private bool slide = false;
 	float time_to_fire;
 	//this is a child under the weapon, array where you fire bullets from
 	Transform firepoint; 
-	
+	private PE_Controller MyScript;
+
+	void Start(){
+		MyScript = GetComponent<PE_Controller> ();
+//		slide = MyScript.sliding;
+	}
+
 	void Shoot(){
 		//Vector2 fire_point_position = new Vector2 (firepoint.position.x, firepoint.position.y);
 		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
@@ -41,7 +48,7 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Z) || Input.GetKeyDown (KeyCode.Comma)) {
+		if ((Input.GetKeyDown (KeyCode.Z) || Input.GetKeyDown (KeyCode.Comma)) && MyScript.sliding==false) {
 			Shoot();
 		}
 	}

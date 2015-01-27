@@ -399,7 +399,7 @@ public class PE_Obj : MonoBehaviour {
 		yield return new WaitForSeconds(stunDelay);
 		myController.enabled = true;
 		//to prevent stunlocking
-		yield return new WaitForSeconds (.1f);
+		yield return new WaitForSeconds (.5f);
 		animator.SetBool("stunned", false);
 		
 		

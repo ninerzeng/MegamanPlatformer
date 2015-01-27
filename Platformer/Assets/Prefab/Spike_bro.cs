@@ -6,6 +6,7 @@ public class Spike_bro : MonoBehaviour {
 	public GameObject megaman;
 	public float health = 30f;
 	private bool shooting = false;
+	private bool moving = false;
 //	public GameObject spike_left;
 //	public GameObject spike_left_up;
 //	public GameObject spike_up;
@@ -24,7 +25,7 @@ public class Spike_bro : MonoBehaviour {
 		//start shooting
 		if (Mathf.Abs(this.transform.position.x - megaman.transform.position.x) < 5) {
 			//fire 5 spikes, at -90, -45, 0, 45, 90 respective to pos Y axis
-			if(shooting == false){
+			if(shooting == false && moving == false){
 				shooting = true;
 				Shooting ();
 			}
@@ -32,6 +33,8 @@ public class Spike_bro : MonoBehaviour {
 		}
 		//if you hit it, then roll towards the player
 		if (hit == 1 && (Time.time - hit_time)>0.5) {
+			moving = true;
+			CancelInvoke();
 			//change animation
 			shooting = false;
 			//if player is to the left, move left
@@ -55,31 +58,32 @@ public class Spike_bro : MonoBehaviour {
 		GameObject spike_left = Instantiate(spike) as GameObject;
 		spike_left.transform.position = this.transform.position;
 		PE_Obj peo_left = spike_left.GetComponent<PE_Obj>();
-		peo_left.vel.x = -10f;
+		peo_left.vel.x = -5f;
 		peo_left.vel.y = 0f;
 		
-//		GameObject spike_left_up = Instantiate(spike) as GameObject;
-//		spike_left_up.transform.position = this.transform.position;
-//		PE_Obj peo_left_up = spike_left_up.GetComponent<PE_Obj>();
-//		peo_left_up.vel.x = -10f;
-//		peo_left_up.vel.y = 10f;
+		GameObject spike_left_up = Instantiate(spike) as GameObject;
+		spike_left_up.transform.position = this.transform.position;
+		PE_Obj peo_left_up = spike_left_up.GetComponent<PE_Obj>();
+		peo_left_up.vel.x = -Mathf.Sqrt(10f);
+		peo_left_up.vel.y = Mathf.Sqrt(10f);
 		
 		GameObject spike_up = Instantiate(spike) as GameObject;
 		spike_up.transform.position = this.transform.position;
+		Vector3 new_pos = spike_up.transform.position;
 		PE_Obj peo_up = spike_up.GetComponent<PE_Obj>();
 		peo_up.vel.x = 0f;
-		peo_up.vel.y = 10f;
+		peo_up.vel.y = 5f;
 		
-//		GameObject spike_right_up = Instantiate(spike) as GameObject;
-//		spike_right_up.transform.position = this.transform.position;
-//		PE_Obj peo_up_right = spike_right_up.GetComponent<PE_Obj>();
-//		peo_up_right.vel.x = 10f;
-//		peo_up_right.vel.y = 10f;
+		GameObject spike_right_up = Instantiate(spike) as GameObject;
+		spike_right_up.transform.position = this.transform.position;
+		PE_Obj peo_up_right = spike_right_up.GetComponent<PE_Obj>();
+		peo_up_right.vel.x = Mathf.Sqrt(10f);
+		peo_up_right.vel.y = Mathf.Sqrt(10f);
 		
 		GameObject spike_right = Instantiate(spike) as GameObject;
 		spike_right.transform.position = this.transform.position;
 		PE_Obj peo_right = spike_right.GetComponent<PE_Obj>();
-		peo_right.vel.x = 10f;
+		peo_right.vel.x = 5f;
 		peo_right.vel.y = 0f;
 	}
 

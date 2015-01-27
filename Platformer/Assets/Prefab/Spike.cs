@@ -12,7 +12,6 @@ public class Spike : MonoBehaviour {
 		peo = GetComponent<PE_Obj>();
 	}
 	void Update () {
-		peo.vel.y = 0f;
 		if ((Time.time - start_time) > 0.5f) {
 			//print ("flying too long");
 			//delete bullet
