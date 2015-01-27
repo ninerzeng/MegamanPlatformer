@@ -38,11 +38,26 @@ public class PE_Controller : MonoBehaviour {
 //		{
 //			sliding = false;
 //		}
+		if (sliding == true) {
+			if(vel.x>0){
+				vel.x = 20f;
+			}
+			else if(vel.x<0){
+				vel.x = -20f;
+			}
+
+		}
 		if (slide_start_time < 0f) {
 			sliding = false;
 			} 
 		else if (Time.time - slide_start_time > 0.5f && sliding==true) {
-			peo.vel = peo.vel/1.5f;
+			if(vel.x>0){
+				vel.x = 10f;
+			}
+			else if(vel.x<0){
+				vel.x = -10f;
+			}
+
 			sliding = false;
 			print ("end slide");
 			}
@@ -115,7 +130,6 @@ public class PE_Controller : MonoBehaviour {
 	{
 		float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
 		vel.x = vX * hSpeed;
-		
 		//animator actions
 		animator.SetFloat ("speed", Mathf.Abs (vel.x));
 		//left right facing
@@ -156,7 +170,7 @@ public class PE_Controller : MonoBehaviour {
 				//last for 0.5 seconds
 				//increase speed momentarily
 				Vector3 flat_speed = peo.vel;
-				peo.vel = 1.5f * flat_speed;
+				//peo.vel.x = 20f;
 				//change collider box
 				//change animation
 
