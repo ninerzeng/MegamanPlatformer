@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Fireball : MonoBehaviour {
-	public BezierPath bezier;
+	private BezierPath bezier;
 	public GameObject player;
 	public float bulletDelta;
 	private List<Vector3> segmentPoints;
 	public float timeOfLastShot;
-	private int i = 0;
-	public float maxXdistance = 6;
+	private int i = 0; // index of segment path
+	private int i_jump = 0;
 	public float maxYheight = 3;
+	public Animator animator; //option for tracking range from player and playing an animation
 	// Use this for initialization
 	void Start () {
 		bezier = GetComponent<BezierPath> ();
@@ -63,12 +64,10 @@ public class Fireball : MonoBehaviour {
 		p1.y += maxYheight;
 
 		float x = 0;
-		if (Mathf.Abs(player.transform.position.x - this.transform.position.x)< maxXdistance)
-		    x = Mathf.Abs (this.transform.position.x - player.transform.position.x);
-		else
-		    x = maxXdistance;
+		x = Mathf.Abs (this.transform.position.x - player.transform.position.x);
+
 		print (x);
-		p2.x -=.75f*x * scalar;
+		p2.x -=.75f * x * scalar;
 		p2.y +=5;
 		
 		p3.x -= x*scalar;
