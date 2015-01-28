@@ -4,7 +4,7 @@ using System.Collections;
 public class Spike_bro : MonoBehaviour {
 	private PE_Obj peo;
 	public GameObject megaman;
-	public float health = 30f;
+	public float health = 20f;
 	private bool shooting = false;
 	private bool moving = false;
 //	public GameObject spike_left;
@@ -19,7 +19,6 @@ public class Spike_bro : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		peo = GetComponent<PE_Obj>();
-		megaman = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	// Update is called once per frame
@@ -44,11 +43,11 @@ public class Spike_bro : MonoBehaviour {
 			shooting = false;
 			//if player is to the left, move left
 			if (megaman.transform.position.x < this.transform.position.x) {
-				peo.vel.x = -5f;
+				peo.vel.x = -10f;
 			}
 			//if player is to the right, move right
 			else if(megaman.transform.position.x > this.transform.position.x) {
-				peo.vel.x = 5f;
+				peo.vel.x = 10f;
 			}
 		}
 		//after a certain amount of time, start shooting again
