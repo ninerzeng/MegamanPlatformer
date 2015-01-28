@@ -32,6 +32,15 @@ public class PE_Controller : MonoBehaviour {
 		vel = peo.vel; // Pull velocity from the PE_Obj
 		grounded = (peo.ground != null);
 		animator.SetBool("grounded",grounded);
+		animator.SetBool ("sliding", sliding);
+
+		if (Input.GetKeyUp ("left") || Input.GetKeyUp("right"))
+			animator.SetBool ("running", false);
+		else if(Mathf.Abs (Input.GetAxis("Horizontal" )) > 0) 
+		{
+			animator.SetBool ("running",true);
+		}
+			
 		// Horizontal movement
 
 //		if ((slide_start_time < 0f) || ((Time.time - slide_start_time) > 0.5f && slide_start_time >= 0f)) 
@@ -131,7 +140,8 @@ public class PE_Controller : MonoBehaviour {
 		float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
 		vel.x = vX * hSpeed;
 		//animator actions
-		animator.SetFloat ("speed", Mathf.Abs (vel.x));
+//		animator.SetFloat ("speed", Mathf.Abs (vel.x));
+		
 		//left right facing
 		if (vel.x > 0) 
 		{
@@ -146,12 +156,14 @@ public class PE_Controller : MonoBehaviour {
 		// Jumping with A (which is x or .)
 		if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Period)) 
 		{
+			
 			// Jump if you're grounded
-			if (grounded) 
+			if (grounded || peo.isClimbing) 
 			{
 				vel.y = jumpVel;
 				peo.ground = null; // Jumping will set ground = null
 			}
+			peo.isClimbing = false;
 		}
 	}
 
