@@ -15,9 +15,11 @@ public class PE_Controller : MonoBehaviour {
 	public float	groundMomentumX = 0.1f;
 
 	public Vector2	maxSpeed = new Vector2( 10, 30 ); // Different x & y to limit maximum falling velocity
-
+	private Vector3 collider_size;
+	private Vector3 collider_center;
 	private float slide_start_time = -1f;
 	public bool sliding = false;
+	BoxCollider box;
 	//false is left, true is right
 	//public bool last_direction = true;
 
@@ -26,6 +28,9 @@ public class PE_Controller : MonoBehaviour {
 	void Start () {
 		peo = GetComponent<PE_Obj>();
 		animator = GetComponent<Animator> ();
+		box = GetComponent<BoxCollider>();
+		collider_size = box.size;
+		collider_center = box.center;
 	}
 	
 	// Update is called once per frame
@@ -61,6 +66,8 @@ public class PE_Controller : MonoBehaviour {
 			}
 
 			sliding = false;
+			box.size = collider_size;
+			box.center = collider_center;
 			print ("end slide");
 			}
 		if (sliding == false) {
@@ -176,6 +183,16 @@ public class PE_Controller : MonoBehaviour {
 				Vector3 flat_speed = peo.vel;
 				//peo.vel.x = 20f;
 				//change collider box
+				Vector3 new_collider_size;
+				new_collider_size.x = 0.805f;
+				new_collider_size.y = 0.65f;
+				new_collider_size.z = 1f;
+				Vector3 new_collider_center;
+				new_collider_center.x = box.center.x;
+				new_collider_center.y = -0.3f;
+				new_collider_center.z = box.center.z;
+				box.size = new_collider_size;
+				box.center = new_collider_center;
 				//change animation
 
 			}
