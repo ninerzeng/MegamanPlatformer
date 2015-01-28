@@ -26,6 +26,8 @@ public class PE_Obj : MonoBehaviour {
 	public PE_Dir		dir = PE_Dir.still;
 	
 	public PE_Obj		ground = null; // Stores whether this is on the ground
+
+	private bool collide_left = false;
 	
 	public Vector3		pos0 {
 		get { return( _pos0); }
@@ -263,42 +265,57 @@ public class PE_Obj : MonoBehaviour {
 				
 				if (dir == PE_Dir.upRight) { // Bottom, Left is the comparison corner
 					a1 = pos1;
-					a1.x += (transform.lossyScale.x/2f+0.1f);
+					a1.x += (transform.lossyScale.x/2f);
 					a1.y += transform.lossyScale.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x -= that.transform.lossyScale.x/2f;
 					b.y -= that.transform.localScale.y/2f;
+					//print ("resolve upright");
 				}
 				
 				if (dir == PE_Dir.upLeft) { // Bottom, Right is the comparison corner
 					a1 = pos1;
-					a1.x -= (transform.lossyScale.x/2f+0.1f);
+					if(this.gameObject.tag == "Player"){
+					a1.x -= (transform.lossyScale.x/2f +0.9f);
+					}
+					else{
+						a1.x -= (transform.lossyScale.x/2f);
+					}
 					a1.y += transform.lossyScale.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x += that.transform.lossyScale.x/2f;
 					b.y -= that.transform.localScale.y/2f;
+					//print ("resolve upleft");
 				}
 				
 				if (dir == PE_Dir.downLeft) { // Top, Right is the comparison corner
 					a1 = pos1;
-					a1.x -= (transform.lossyScale.x/2f+0.1f);
+					if(this.gameObject.tag == "Player"){
+						a1.x -= (transform.lossyScale.x/2f +0.9f);
+					}
+					else{
+					a1.x -= (transform.lossyScale.x/2f);
+					}
 					a1.y -= transform.lossyScale.y/2f;
+					//a0 = a1;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x += that.transform.lossyScale.x/2f;
 					b.y += that.transform.localScale.y/2f;
+					//print ("resolve downleft");
 				}
 				
 				if (dir == PE_Dir.downRight) { // Top, Left is the comparison corner
 					a1 = pos1;
-					a1.x += (transform.lossyScale.x/2f+0.1f);
+					a1.x += (transform.lossyScale.x/2f);
 					a1.y -= transform.lossyScale.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x -= that.transform.lossyScale.x/2f;
 					b.y += that.transform.localScale.y/2f;
+					//print ("resolve downright");
 				}
 				
 				// In the x dimension, find how far along the line segment between a0 and a1 we need to go to encounter b

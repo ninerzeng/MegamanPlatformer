@@ -15,6 +15,7 @@ public class Spike_bro : MonoBehaviour {
 	public GameObject spike;
 	private int hit = 0;
 	private float hit_time = -1f;
+	private float move_time = -1f;
 	// Use this for initialization
 	void Start () {
 		peo = GetComponent<PE_Obj>();
@@ -32,7 +33,10 @@ public class Spike_bro : MonoBehaviour {
 			shooting = true;
 		}
 		//if you hit it, then roll towards the player
-		if (hit == 1 && (Time.time - hit_time)>0.5) {
+		if (hit == 1 && (Time.time - hit_time)>1f) {
+			if(moving == false){
+				move_time = Time.time;
+			}
 			moving = true;
 			CancelInvoke();
 			//change animation
@@ -45,6 +49,13 @@ public class Spike_bro : MonoBehaviour {
 			else if(megaman.transform.position.x > this.transform.position.x) {
 				peo.vel.x = 5f;
 			}
+		}
+		//after a certain amount of time, start shooting again
+		if ((Time.time - move_time) > 4f && moving == true) {
+			peo.vel.x = 0f;
+			moving = false;
+			Shooting ();
+			hit = 0;
 		}
 	}
 	void Shooting(){
@@ -93,7 +104,9 @@ public class Spike_bro : MonoBehaviour {
 			if(hit_time < 0){
 				hit_time = Time.time;
 			}
+			if(moving == false){
 			health = health - 5f;
+			}
 			if(health <= 0){
 				int ObjIndex = PhysEngine.objs.IndexOf (this.GetComponent<PE_Obj> () as PE_Obj);
 				if (ObjIndex != -1) {

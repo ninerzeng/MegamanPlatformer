@@ -16,9 +16,11 @@ public class Weapon : MonoBehaviour {
 	private PE_Controller MyScript;
 	//true is right, false is left
 	private bool last_dir = true;
+	private PE_Obj peo;
 
 	void Start(){
 		MyScript = GetComponent<PE_Controller> ();
+		peo = megaman.GetComponent<PE_Obj> ();
 //		slide = MyScript.sliding;
 	}
 
@@ -30,6 +32,7 @@ public class Weapon : MonoBehaviour {
 			PE_Obj peo_left = bullet.GetComponent<PE_Obj>();
 			bullet.transform.position = this.transform.position;
 			peo_left.vel.x = -20f;
+			//peo_left.vel.y = peo.vel.y;
 			//peo_left.vel.y = 0f;
 		} 
 		else {
@@ -38,6 +41,7 @@ public class Weapon : MonoBehaviour {
 			PE_Obj peo_right = bullet.GetComponent<PE_Obj>();
 			bullet.transform.position = this.transform.position;
 			peo_right.vel.x = 20f;
+			//peo_right.vel.y = peo.vel.y;
 			//peo_right.vel.y = 0f;
 				}
 		//		Vector2 bullet_speed;

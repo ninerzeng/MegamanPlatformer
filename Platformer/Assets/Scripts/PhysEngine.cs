@@ -81,12 +81,16 @@ public class PhysEngine : MonoBehaviour {
 			}
 		} else if (po.vel.x>0 && po.vel.y>0) {
 			po.dir = PE_Dir.upRight;
+			//print ("upright");
 		} else if (po.vel.x>0 && po.vel.y<=0) {
 			po.dir = PE_Dir.downRight;
+			//print ("downright");
 		} else if (po.vel.x<0 && po.vel.y<=0) {
 			po.dir = PE_Dir.downLeft;
+			//print ("downleft");
 		} else if (po.vel.x<0 && po.vel.y>0) {
 			po.dir = PE_Dir.upLeft;
+			//print ("upleft");
 		}
 		
 		// Position
