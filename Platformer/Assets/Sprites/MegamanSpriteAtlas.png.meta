@@ -52,7 +52,7 @@ TextureImporter:
     21300094: MegamanSpriteAtlas_47
     21300096: MegamanSpriteAtlas_48
     21300098: MegamanSpriteAtlas_49
-    21300100: MegamanSpriteAtlas_50
+    21300100: PlayerSlide_1
     21300102: MegamanSpriteAtlas_51
     21300104: MegamanSpriteAtlas_52
     21300106: MegamanSpriteAtlas_53
@@ -652,7 +652,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MegamanSpriteAtlas_50
+    - name: PlayerSlide_1
       rect:
         serializedVersion: 2
         x: 9

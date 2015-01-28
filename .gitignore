@@ -1,6 +1,6 @@
-Potter/Library/*
-Potter/Temp/*
-Potter/Obj/*
+Platformer/Library/*
+Platformer/Temp/*
+Platformer/Obj/*
 *.dll
 *.csproj
 *.meta

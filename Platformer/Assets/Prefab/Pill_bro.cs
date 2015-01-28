@@ -14,6 +14,8 @@ public class Pill_bro : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		peo = GetComponent<PE_Obj>();
+		player = GameObject.FindGameObjectWithTag ("Player");
+		
 	}
 	
 	// Update is called once per frame

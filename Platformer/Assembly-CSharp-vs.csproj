@@ -46,10 +46,19 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Pill_bro.cs" />
+     <Compile Include="Assets\Prefab\Bowling_ball.cs" />
+     <Compile Include="Assets\Prefab\Bowling_bro.cs" />
      <Compile Include="Assets\Prefab\Bullet.cs" />
+     <Compile Include="Assets\Prefab\Pill_bro.cs" />
+     <Compile Include="Assets\Prefab\Spike.cs" />
+     <Compile Include="Assets\Prefab\Spike_bro.cs" />
+     <Compile Include="Assets\Scripts\BezierPath.cs" />
+     <Compile Include="Assets\Scripts\CannonballSpawner.cs" />
      <Compile Include="Assets\Scripts\CoinMovement.cs" />
+     <Compile Include="Assets\Scripts\EnemyHealth.cs" />
+     <Compile Include="Assets\Scripts\Fireball.cs" />
      <Compile Include="Assets\Scripts\GameManagerScript.cs" />
+     <Compile Include="Assets\Scripts\Needleman.cs" />
      <Compile Include="Assets\Scripts\PE_Controller.cs" />
      <Compile Include="Assets\Scripts\PE_Obj.cs" />
      <Compile Include="Assets\Scripts\PhysEngine.cs" />

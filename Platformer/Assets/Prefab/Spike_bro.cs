@@ -19,6 +19,7 @@ public class Spike_bro : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		peo = GetComponent<PE_Obj>();
+		megaman = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	// Update is called once per frame
