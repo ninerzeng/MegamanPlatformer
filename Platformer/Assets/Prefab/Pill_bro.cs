@@ -11,11 +11,12 @@ public class Pill_bro : MonoBehaviour {
 	private bool moving = false;
 	private bool done_shooting = false;
 	private float time_shot = -1f;
+	public Animator animator;
 	// Use this for initialization
 	void Start () {
 		peo = GetComponent<PE_Obj>();
 		player = GameObject.FindGameObjectWithTag ("Player");
-		
+		animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -35,6 +36,7 @@ public class Pill_bro : MonoBehaviour {
 			//fire 5 spikes, at -90, -45, 0, 45, 90 respective to pos Y axis
 			if(shot==false){
 				shot = true;
+				animator.SetTrigger("Wakeup");
 				print ("woke up pillbro");
 				Invoke("Shoot", 0.5f);
 			}
