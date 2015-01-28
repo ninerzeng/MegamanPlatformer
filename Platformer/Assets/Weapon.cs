@@ -14,23 +14,35 @@ public class Weapon : MonoBehaviour {
 	//this is a child under the weapon, array where you fire bullets from
 	Transform firepoint; 
 	private PE_Controller MyScript;
+	//true is right, false is left
+	private bool last_dir = true;
+	private PE_Obj peo;
 
 	void Start(){
 		MyScript = GetComponent<PE_Controller> ();
+		peo = megaman.GetComponent<PE_Obj> ();
 //		slide = MyScript.sliding;
 	}
 
 	void Shoot(){
 		//Vector2 fire_point_position = new Vector2 (firepoint.position.x, firepoint.position.y);
-		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A) || last_dir == false) {
 			print ("bullet fired left");
 			GameObject bullet = Instantiate(left_bullet_prefab) as GameObject;
+			PE_Obj peo_left = bullet.GetComponent<PE_Obj>();
 			bullet.transform.position = this.transform.position;
+			peo_left.vel.x = -20f;
+			//peo_left.vel.y = peo.vel.y;
+			//peo_left.vel.y = 0f;
 		} 
 		else {
 			print ("bullet shot right");
-			GameObject bullet = Instantiate (right_bullet_prefab) as GameObject;
+			GameObject bullet = Instantiate(right_bullet_prefab) as GameObject;
+			PE_Obj peo_right = bullet.GetComponent<PE_Obj>();
 			bullet.transform.position = this.transform.position;
+			peo_right.vel.x = 20f;
+			//peo_right.vel.y = peo.vel.y;
+			//peo_right.vel.y = 0f;
 				}
 		//		Vector2 bullet_speed;
 		//		bullet_speed.x = 5;
@@ -51,5 +63,11 @@ public class Weapon : MonoBehaviour {
 		if ((Input.GetKeyDown (KeyCode.Z) || Input.GetKeyDown (KeyCode.Comma)) && MyScript.sliding==false) {
 			Shoot();
 		}
+		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+			last_dir = false;
+				}
+		else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+			last_dir = true;
+				}
 	}
 }
