@@ -6,13 +6,14 @@ public class Spike : MonoBehaviour {
 	public float damage = 5;
 	private float start_time = 0;
 	private float bullet_used = 0;
+	public float range = .5f;
 	// Update is called once per frame
 	void Start () {
 		start_time = Time.time;
 		peo = GetComponent<PE_Obj>();
 	}
 	void Update () {
-		if ((Time.time - start_time) > 0.5f) {
+		if ((Time.time - start_time) > range) {
 			//print ("flying too long");
 			//delete bullet
 			int ObjIndex = PhysEngine.objs.IndexOf (this.GetComponent<PE_Obj> () as PE_Obj);

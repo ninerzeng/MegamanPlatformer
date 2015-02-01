@@ -6,9 +6,12 @@ public class Bowling_bro : MonoBehaviour {
 	public float health = 15f;
 	public GameObject bowling_ball;
 	private bool done_shooting = true;
+	public Animator animator;
 	// Use this for initialization
 	void Start () {
-	
+		animator = GetComponent<Animator>();
+		megaman = GameObject.FindGameObjectWithTag ("Player");
+
 	}
 	
 	// Update is called once per frame
@@ -23,10 +26,15 @@ public class Bowling_bro : MonoBehaviour {
 				Invoke ("shoot_right", 3f);
 			}
 			done_shooting = false;
+			animator.SetTrigger("done_shooting");
 		}
 	}
 	private Vector3 temp_loc;
 	void shoot_right(){
+		// face right
+		transform.localScale = new Vector3 (-1f, 1f, 1f);	
+		animator.SetTrigger("shooting");
+
 		GameObject ball_right = Instantiate(bowling_ball) as GameObject;
 		//ball_right.transform.position = this.transform.position;
 		temp_loc = this.transform.position;
@@ -39,6 +47,10 @@ public class Bowling_bro : MonoBehaviour {
 	}
 
 	void shoot_left(){
+		// face left
+		transform.localScale = new Vector3 (1f, 1f, 1f);
+		animator.SetTrigger("shooting");
+
 		GameObject ball_left = Instantiate(bowling_ball) as GameObject;
 		//ball_left.transform.position = this.transform.position;
 		temp_loc = this.transform.position;

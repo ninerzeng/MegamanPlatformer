@@ -3,7 +3,6 @@ Platformer/Temp/*
 Platformer/Obj/*
 *.dll
 *.csproj
-*.meta
 *.sln 
 *.csproj
 *.unityproj

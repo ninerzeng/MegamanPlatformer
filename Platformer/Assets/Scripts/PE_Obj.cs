@@ -93,7 +93,7 @@ public class PE_Obj : MonoBehaviour {
 			
 		}
 		//No collision if enemy
-		if ((other.tag == "Enemy" || other.tag == "Cannonball") && this.tag == "Player") {
+		if ((other.tag == "Enemy" || other.tag == "Cannonball" || other.tag == "Enemy Bullet") && this.tag == "Player") {
 			print ("found a ball");
 			PlayerHealth m_PlayerHealth = this.GetComponent<PlayerHealth> ();
 			if (m_PlayerHealth.playerHealth <=0 || stunned == true)

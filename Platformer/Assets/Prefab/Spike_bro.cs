@@ -16,9 +16,12 @@ public class Spike_bro : MonoBehaviour {
 	private int hit = 0;
 	private float hit_time = -1f;
 	private float move_time = -1f;
+	public Animator animator;
 	// Use this for initialization
 	void Start () {
 		peo = GetComponent<PE_Obj>();
+		animator = GetComponent<Animator>();
+		megaman = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	// Update is called once per frame
@@ -37,23 +40,26 @@ public class Spike_bro : MonoBehaviour {
 			if(moving == false){
 				move_time = Time.time;
 			}
-			moving = true;
+
+			animator.SetTrigger("moving");
 			CancelInvoke();
 			//change animation
 			shooting = false;
 			//if player is to the left, move left
-			if (megaman.transform.position.x < this.transform.position.x) {
-				peo.vel.x = -10f;
+			if (moving == false && megaman.transform.position.x < this.transform.position.x) {
+				peo.vel.x = -7f;
 			}
 			//if player is to the right, move right
-			else if(megaman.transform.position.x > this.transform.position.x) {
-				peo.vel.x = 10f;
+			else if( moving == false &&  megaman.transform.position.x > this.transform.position.x) {
+				peo.vel.x = 7f;
 			}
+			moving = true;
 		}
 		//after a certain amount of time, start shooting again
-		if ((Time.time - move_time) > 4f && moving == true) {
+		if ((Time.time - move_time) > 1f && moving == true) {
 			peo.vel.x = 0f;
 			moving = false;
+
 			Shooting ();
 			hit = 0;
 		}
@@ -65,6 +71,7 @@ public class Spike_bro : MonoBehaviour {
 	}
 
 	void Shoot(){
+		animator.SetTrigger("shooting");
 		//fire 5 spikes, at -90, -45, 0, 45, 90 respective to pos Y axis
 		GameObject spike_left = Instantiate(spike) as GameObject;
 		spike_left.transform.position = this.transform.position;

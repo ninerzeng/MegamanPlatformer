@@ -17,7 +17,7 @@ public class Bowling_ball : MonoBehaviour {
 			//delete bullet
 			int ObjIndex = PhysEngine.objs.IndexOf (this.GetComponent<PE_Obj> () as PE_Obj);
 			if (ObjIndex != -1) {
-				//print ("DESTROY");
+				print ("delete this ball");
 				PhysEngine.objs.RemoveAt (ObjIndex);	
 				Destroy (this.gameObject);
 			}

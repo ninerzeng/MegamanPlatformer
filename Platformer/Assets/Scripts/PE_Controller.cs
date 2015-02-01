@@ -66,7 +66,7 @@ public class PE_Controller : MonoBehaviour {
 		if (slide_start_time < 0f) {
 			sliding = false;
 			} 
-		else if (Time.time - slide_start_time > 0.5f && sliding==true) {
+		else if (Time.time - slide_start_time > 0.35f && sliding==true) {
 			if(vel.x>0){
 				vel.x = 10f;
 			}

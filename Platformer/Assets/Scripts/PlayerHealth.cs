@@ -31,7 +31,14 @@ public class PlayerHealth : MonoBehaviour {
 
 //		barDisplay = playerHealth * .01f;
 	}
-	
+	void OnTriggerEnter(Collider other)
+	{
+		print("you got hit");
+
+		if(other.tag == "Enemy Bullet")
+			playerHealth -= 5;
+
+	}
 	void Update() {
 		barDisplay = playerHealth * .01f;
 

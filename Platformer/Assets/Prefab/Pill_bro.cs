@@ -32,7 +32,7 @@ public class Pill_bro : MonoBehaviour {
 			}
 		}
 		//if you're close enough, shoot once at you and then run towards you
-		if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 7f) {
+		if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 4f) {
 			//fire 5 spikes, at -90, -45, 0, 45, 90 respective to pos Y axis
 			if(shot==false){
 				shot = true;
