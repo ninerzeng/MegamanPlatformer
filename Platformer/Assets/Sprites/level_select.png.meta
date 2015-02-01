@@ -1,0 +1,333 @@
+fileFormatVersion: 2
+guid: 7f522e41aff3d4c11a9a53178de5428a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: _level_select_0
+    21300002: _megaman_head
+    21300004: level_select_2
+    21300006: _frame
+    21300008: _blinker2
+    21300010: _blinker
+    21300012: level_select_6
+    21300014: level_select_7
+    21300016: level_select_8
+    21300018: level_select_9
+    21300020: level_select_10
+    21300022: _needleman
+    21300024: level_select_12
+    21300026: level_select_13
+    21300028: level_select_14
+    21300030: level_select_15
+    21300032: level_select_16
+    21300034: level_select_17
+    21300036: level_select_18
+    21300038: level_select_19
+    21300040: level_select_20
+    21300042: level_select_21
+    21300044: level_select_22
+    21300046: level_select_23
+    21300048: level_select_24
+    21300050: level_select_25
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 24
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: _level_select_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 248
+        height: 240
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: _megaman_head
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 116
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_2
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 191
+        width: 52
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: _frame
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 191
+        width: 52
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: _blinker2
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 182
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: _blinker
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 182
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_6
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 149
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_7
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 149
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_8
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 149
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_9
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 149
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_10
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 149
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: _needleman
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 149
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_12
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 116
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_13
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 116
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_14
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 116
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_15
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 116
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_16
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 116
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_17
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 83
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_18
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 83
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_19
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 83
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_20
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 83
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_21
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 83
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_22
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 82
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_23
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 50
+        width: 46
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_24
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 50
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: level_select_25
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 75
+        width: 12
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
